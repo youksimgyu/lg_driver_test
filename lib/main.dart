@@ -4,7 +4,7 @@ import 'package:lg_driver_test/widgets/home_screen.dart';
 void main() {
   runApp(const LGDriverTest());
 }
-// https://github.com/umair13adil/flutter_app_testing/tree/master
+
 class LGDriverTest extends StatelessWidget {
   const LGDriverTest({super.key});
   @override
@@ -17,7 +17,9 @@ class LGDriverTest extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const HomeScreen(title: 'LG Driver Test'),
+      home: const HomeScreen(
+        title: 'LG Driver Test',
+      ),
     );
   }
 }
