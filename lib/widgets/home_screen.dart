@@ -36,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Text(
               '$_counter',
-              key: const ValueKey<String>('counter'),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
@@ -44,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'increment',
+        tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
