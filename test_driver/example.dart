@@ -3,31 +3,41 @@ import 'package:test/test.dart';
 
 class Example {
   static void exampleTest() {
-    FlutterDriver? driver;
+    late FlutterDriver driver;
 
     setUpAll(() async {
       driver = await FlutterDriver.connect();
     });
 
     tearDownAll(() {
-      if (driver != null) driver?.close();
+      driver.close();
+    });
+
+    setUp(() async {
+      await driver.requestData('restart');
     });
 
     test('Increment Counter', () async {
-      // countertenor 키를 가진 텍스트 위젯을 찾습니다.
-      final counterTextFinder = find.byValueKey('counter');
+      final text = find.text('You have pushed the button this many times:');
 
-      // 초기 카운터 값이 0인지 확인합니다.
-      expect(await driver?.getText(counterTextFinder), "0");
+      expect(
+        await driver.getText(text),
+        'You have pushed the button this many times:',
+      );
 
-      // increment 키를 가진 버튼 위젯을 찾습니다.
-      final buttonFinder = find.byValueKey('increment');
+      final tooltip = find.byTooltip('increment');
 
-      // 버튼을 탭합니다.
-      await driver?.tap(buttonFinder);
+      await driver.tap(tooltip);
 
-      // 카운터 값이 1로 증가했는지 확인합니다.
-      expect(await driver?.getText(counterTextFinder), "1");
+      final counter = find.byValueKey('counter');
+
+      expect(await driver.getText(counter), '1');
+
+      for (int i = 0; i < 10; i++) {
+        await driver.tap(tooltip);
+      }
+
+      expect(await driver.getText(counter), '11');
     });
   }
 }

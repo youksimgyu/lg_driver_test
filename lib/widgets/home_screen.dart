@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lg_driver_test/widgets/second_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -38,6 +39,18 @@ class _HomeScreenState extends State<HomeScreen> {
               '$_counter',
               key: const ValueKey<String>('counter'),
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return const SecondScreen();
+                  },
+                ));
+              },
+              child: const Text(
+                'Go to Second Screen',
+              ),
             ),
           ],
         ),
